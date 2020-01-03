@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { GRAPHCMS_API, GRAPHCMS_ENDPOINT } = process.env
 
 export default {
   mode: 'spa',
@@ -23,6 +25,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/config/_basic.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -42,7 +45,25 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/apollo',
+    '@nuxtjs/markdownit',
+    '@nuxtjs/style-resources'
   ],
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    }
+  },
+  markdownit: {
+    injected: true
+  },
+  styleResources: {
+    scss: [
+      '~/assets/config/_typography.scss',
+      '~/assets/config/_var.scss',
+    ]
+  },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -58,5 +79,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    GRAPHCMS_API
   }
 }

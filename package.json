@@ -11,9 +11,27 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "@nuxtjs/apollo": "^4.0.0-rc19",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-http": "^1.5.16",
+    "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
+    "nuxt": "^2.0.0",
+    "stylus": "^0.54.7",
+    "vue-apollo": "^3.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "css-loader": "^3.4.1",
+    "node-sass": "^4.13.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "vue-loader": "^15.8.3",
+    "vue-style-loader": "^4.1.2"
+  }
 }
