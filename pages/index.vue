@@ -45,7 +45,6 @@ export default {
     getDate(postDate) {
       const date = new Date(postDate)
       const formatedDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
-      console.log(formatedDate)
       return formatedDate
     }
   }
@@ -59,10 +58,10 @@ export default {
   max-width: 110rem;
   margin: 0 auto;
   text-align: center;
-  padding: 5rem 3rem 0;
+  padding: 0 3rem;
 
-@media only screen and (max-width: $sp-width) {
-    padding: 5rem 1.5rem 0;
+  @media only screen and (max-width: $sp-width) {
+    padding: 0 1.5rem;
   }
 }
 
