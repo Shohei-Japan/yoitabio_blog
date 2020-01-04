@@ -1,7 +1,7 @@
 <template>
-  <div class="top_header__container">
+  <header class="top_header__container">
     <h1 class="top_header__title">Yoitabio Blog</h1>
-  </div>
+  </header>
 </template>
 
 <script>
