@@ -1,20 +1,48 @@
 <template>
   <div class="container">
-    {{ posts }}
+    <template v-for="post in posts">
+      <post-card
+        :key="post.id"
+        :title="post.title"
+        :content="post.content"
+        :created-at="getDate(post.createdAt)"
+        :thumbnail-url="getUrl(post)"
+      />
+    </template>
   </div>
 </template>
 
 <script>
 import posts from '~/apollo/queries/posts'
+import PostCard from '~/components/PostCard'
 
 export default {
   data: () => ({
     posts: {}
   }),
+  components: {
+    PostCard
+  },
   layout: 'top',
   apollo: {
     posts: {
       query: posts
+    }
+  },
+  methods: {
+    getUrl(post) {
+      if (post.thumbnail?.url) {
+        return post.thumbnail.url
+      }
+      return ''
+    },
+    getDate(postDate) {
+      console.log(new Date(postDate))
+      const date = new Date(postDate.replace(/-/g, '/'))
+      console.log(date)
+      return (
+        `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
+      )
     }
   }
 }
@@ -23,32 +51,8 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+  padding: 2rem 3rem;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

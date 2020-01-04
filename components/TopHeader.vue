@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .top_header__container {
-  background-color: $bc-gray-color;
+  background-color: $bg-gray-color;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@ export default {
   width: 100%;
 
   .top_header__title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 200;
     letter-spacing: 0.1rem;
   }
