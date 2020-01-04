@@ -1,14 +1,29 @@
 <template>
+  <!-- https://unsplash.com/photos/vPQfc4niDh0 -->
   <header
     class="top_header__container"
-    :style="getContainerStyles"
     ref="TopHeader"
+    :style="getContainerStyles"
   >
-    <div class="top_header__title__wrapper">
+    <div
+      class="top_header__title__wrapper"
+      :style="getTitleWrapperStyles"
+    >
       <h1
         class="top_header__title"
         :style="getTitleStyles"
       >Blog</h1>
+      <nav>
+        <ul class="top_header__nav">
+          <li
+            v-for="(list, index) in navLists"
+            :key="index"
+            class="top_header__nav__item"
+          >
+            {{ list }}
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </template>
@@ -27,27 +42,48 @@ export default {
     }
   },
   computed: {
+    navLists() {
+      return ['ABOUT', 'TECH', 'TRAVEL', 'OTHERS']
+    },
+    scrolled350() {
+      return this.scrollY >= 350
+    },
+    scrolled250() {
+      return this.scrollY >= 250
+    },
     getContainerStyles() {
       const scrolledY = (this.scrollTop / 70).toFixed(2) - 20
       const innerWidth = parseInt(window.innerWidth / 700)
-      const styles = {
+      let styles = {
         height: `${400 - this.scrollY}px`,
         backgroundPositionY: -6 + (scrolledY * innerWidth) + 'rem',
       }
-      if (this.scrollY >= 350) {
-        styles.backgroundPositionY = 0
-        styles.height = '7rem'
+      if (this.scrolled350) {
+        styles = {
+          ...styles,
+          backgroundPositionY: 0,
+          height: '7rem'
+        }
       }
       return styles
     },
-    getTitleStyles() {
-      if (this.scrollY < 350) {
+    getTitleWrapperStyles() {
+      if (!this.scrolled250) {
         return
       }
-      const styles = {
-        fontSize: '2rem'
+      return {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
       }
-      return styles
+    },
+    getTitleStyles() {
+      if (!this.scrolled250) {
+        return
+      }
+      return {
+        fontSize: '2rem',
+        marginBottom: '0'
+      }
     }
   }
 }
@@ -57,15 +93,12 @@ export default {
 .top_header__container {
   background-color: $bg-gray-color;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   height: 40rem;
   min-height: 7rem;
   width: 100%;
   transition-duration: 150ms;
   transition-timing-function: ease-out;
-  padding: 1rem 4rem;
   background: url("../static/img/ruben-bagues-vPQfc4niDh0-unsplash.jpg") no-repeat center center;
   background-size: 220%;
   
@@ -74,17 +107,40 @@ export default {
   }
 
   .top_header__title__wrapper {
-    max-width: 60rem;
-    width: 100%;
+    max-width: 70rem;
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .top_header__title {
     font-size: 4rem;
     font-weight: 200;
     letter-spacing: 0.1rem;
+    margin-bottom: 5rem;
+
     transition-duration: 300ms;
     transition-timing-function: ease-out;
     transition-delay: 100ms;
+  }
+
+  .top_header__nav {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+
+    &__item {
+      font-size: 1.5rem;
+      list-style: none;
+
+      &:not(:last-child) {
+        margin-right: 4rem;
+      }
+    }
   }
 }
 </style>
