@@ -18,9 +18,14 @@
           <li
             v-for="(list, index) in navLists"
             :key="index"
-            class="top_header__nav__item"
+            class="top_header__nav--item"
           >
-            {{ list }}
+            <nuxt-link
+              class="top_header__nav--item_link"
+              to="/about"
+            >
+              {{ list }}
+            </nuxt-link>
           </li>
         </ul>
       </nav>
@@ -118,6 +123,7 @@ export default {
   }
 
   .top_header__title {
+    color: $text-default;
     font-size: 4rem;
     font-weight: 200;
     letter-spacing: 0.1rem;
@@ -133,12 +139,39 @@ export default {
     justify-content: center;
     padding-left: 0;
 
-    &__item {
+    &--item {
       font-size: 1.5rem;
       list-style: none;
 
       &:not(:last-child) {
-        margin-right: 4rem;
+        margin-right: 2rem;
+      }
+
+      &_link {
+        text-decoration: none;
+        color: $text-default;
+        padding: 0 1rem;
+
+        position: relative;
+        display: inline-block;
+
+        &::after {
+          position: absolute;
+          bottom: -0.6rem;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 0.2rem;
+          background: $orange-color;
+          transform: scale(0, 1);
+          transform-origin: right top;
+          transition: transform .3s;
+        }
+
+        &:hover::after {
+          transform-origin: left top;
+          transform: scale(1, 1);
+        }
       }
     }
   }
