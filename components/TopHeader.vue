@@ -123,7 +123,7 @@ export default {
   }
 
   .top_header__title {
-    color: $text-default;
+    color: $text-default-gray;
     font-size: 4rem;
     font-weight: 200;
     letter-spacing: 0.1rem;
@@ -149,7 +149,7 @@ export default {
 
       &_link {
         text-decoration: none;
-        color: $text-default;
+        color: $text-default-gray;
         padding: 0 1rem;
 
         position: relative;
@@ -165,7 +165,8 @@ export default {
           background: $orange-color;
           transform: scale(0, 1);
           transform-origin: right top;
-          transition: transform .3s;
+          transition-timing-function: ease-in;
+          transition: transform .5s;
         }
 
         &:hover::after {

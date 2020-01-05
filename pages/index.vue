@@ -57,7 +57,6 @@ export default {
   justify-content: center;
   max-width: 110rem;
   margin: 0 auto;
-  text-align: center;
   padding: 0 3rem;
 
   @media only screen and (max-width: $sp-width) {
