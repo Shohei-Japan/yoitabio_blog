@@ -45,8 +45,15 @@ export default {
     },
     getDate(postDate) {
       const date = new Date(postDate)
-      const formatedDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
-      return formatedDate
+      const year = date.getFullYear()
+      const month = this.addtextZero(date.getMonth() + 1)
+      const day = this.addtextZero(date.getDate())
+      const hour = this.addtextZero(date.getHours())
+      const minute = this.addtextZero(date.getMinutes())
+      return `${year}/${month}/${day} ${hour}:${minute}`
+    },
+    addtextZero(text) {
+      return text.toString().padStart(2, '0')
     }
   }
 }

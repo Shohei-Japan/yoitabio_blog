@@ -100,7 +100,7 @@ export default {
             0, 0, 1, 0,
             0, 0, 0, 0.9
           );
-          filter: grayscale(60%);
+          filter: grayscale(30%);
 
           &:before {
             background-color: rgba(0, 0, 0, 0.4);
