@@ -32,6 +32,7 @@ export default {
   layout: 'top',
   apollo: {
     posts: {
+      prefetch: true,
       query: posts
     }
   },
