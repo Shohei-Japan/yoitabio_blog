@@ -3,18 +3,11 @@
     <p class="post--title">{{ title }}</p>
     <p class="post--created_at">{{ createdAt }}</p>
     <div class="post--card">
-      <img
-        :src="thumbnailUrl"
-        class="post--thumbnail"
-        alt=""
-      >
+      <div
+        class="post--card_thumbnail"
+        :style="getStyles"
+      />
     </div>
-    <nuxt-link 
-      to="/me"
-      class="post--read"
-    >
-      READ FULL POST
-    </nuxt-link>
   </article>
 </template>
 
@@ -37,6 +30,13 @@ export default {
     thumbnailUrl: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    getStyles() {
+      return {
+        backgroundImage: `url("${this.thumbnailUrl}")`
+      }
     }
   }
 }
@@ -63,63 +63,34 @@ export default {
     &--card {
       height: 24rem;
       box-shadow: 0.1rem 0.1rem 0.3rem 0 rgba(0,0,0,0.1);
-    }
-
-    &--thumbnail {
-      width: 100%;
-    }
-
-    &--read {
-      text-decoration: none;
-      font-size: 1.2rem;
-      color: $dark-gray-color;
-      border: solid 0.1rem $dark-gray-color;
-      display: inline-block;
-      padding: 1rem 2rem;
 
       position: relative;
-      text-align: center;
-      text-decoration: none;
-      -webkit-transition: all 0.5s ease;
-      -moz-transition: all 0.5s ease;
-      -o-transition: all 0.5s ease;
-      transition: all 0.5s ease;
+      width: 100%;
+      overflow: hidden;
 
-      &:after {
-        content: "";
+      &_thumbnail {
         position: absolute;
-        height: 0%;
-        left: 50%;
-        top: 49.5%;
-        width: 25%;
-        z-index: -1;
-        -webkit-transition: all 0.5s ease 0s;
-        -moz-transition: all 0.5s ease 0s;
-        -o-transition: all 0.5s ease 0s;
-        transition: all 0.5s ease 0s;
-      }
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        transition: all 0.5s ease-out;
+        transform: matrix3d(
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1
+        );
+        will-change: transform;
 
-      &:hover {
-        color: $white-color;
-        border-color: $gray-color;
-      }
-
-      &:hover:after {
-        height: 50%;
-      }
-
-      &:after {
-        background: $gray-color;
-          opacity: .5;
-          -moz-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-          -ms-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-          -webkit-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-          transform: translateY(-50%) translateX(-50%) rotate(90deg);
-      }
-
-      &:hover:after {
-        opacity: 1;
-        height: 410% !important;
+        &:hover {
+          transform: matrix3d(
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 0.9
+          );
+          filter: grayscale(100%);
+        }
       }
     }
   }
