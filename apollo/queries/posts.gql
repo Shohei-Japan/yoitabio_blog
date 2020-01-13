@@ -1,4 +1,4 @@
-query {
+query GetPosts {
   posts(orderBy: createdAt_DESC, where: { status: PUBLISHED }) {
     id
     title

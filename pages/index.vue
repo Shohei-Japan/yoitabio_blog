@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import posts from '~/apollo/queries/posts'
+import getPosts from '~/apollo/queries/posts.gql'
 import PostCard from '~/components/PostCard'
 import AsideMenu from '~/components/AsideMenu'
 
@@ -33,7 +33,7 @@ export default {
   apollo: {
     posts: {
       prefetch: true,
-      query: posts
+      query: getPosts
     }
   },
   methods: {
@@ -45,7 +45,7 @@ export default {
     },
     getDate(postDate) {
       const date = new Date(postDate)
-      const formatedDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
+      const formatedDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
       return formatedDate
     }
   }

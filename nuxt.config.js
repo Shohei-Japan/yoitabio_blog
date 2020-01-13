@@ -1,5 +1,4 @@
 require('dotenv').config()
-const { GRAPHCMS_API, GRAPHCMS_ENDPOINT } = process.env
 
 export default {
   mode: 'spa',
@@ -84,8 +83,5 @@ export default {
         '@babel/plugin-proposal-optional-chaining'
       ]
     }
-  },
-  env: {
-    GRAPHCMS_API
   }
 }

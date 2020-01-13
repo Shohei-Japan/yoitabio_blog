@@ -1,11 +1,10 @@
-import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const GRAPHCMS_ENDPOINT = process.env.GRAPHCMS_ENDPOINT
+const GRAPHCMS_API = process.env.GRAPHCMS_API
 
 export default () => ({
-  link: new HttpLink({ uri: GRAPHCMS_ENDPOINT }),
+  link: new HttpLink({ uri: GRAPHCMS_API }),
   cache: new InMemoryCache(),
   defaultHttpLink: false
 })
