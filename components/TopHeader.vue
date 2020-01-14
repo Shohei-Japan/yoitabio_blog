@@ -12,7 +12,7 @@
       <h1
         class="top_header__title"
         :style="getTitleStyles"
-      >Blog</h1>
+      >Yoitabio Blog</h1>
       <nav>
         <ul class="top_header__nav">
           <li

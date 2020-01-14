@@ -1,11 +1,10 @@
 <template>
-  <nuxt-link 
-    to="/me"
+  <button
     class="app_button"
+    @click="handleClick"
   >
     {{ text }}
-    
-  </nuxt-link>
+  </button>
 </template>
 
 <script>
@@ -16,6 +15,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    handleClick() {
+      this.$emit('click')
+    }
   }
 }
 </script>
@@ -25,8 +29,10 @@ export default {
   text-decoration: none;
   font-size: 1.6rem;
   color: $dark-gray-color;
+  background: none;
   display: inline-block;
   padding: 1rem 2rem;
+  cursor: pointer;
 
   position: relative;
   text-align: center;
@@ -44,14 +50,15 @@ export default {
     top: 49.5%;
     width: 30%;
     z-index: -1;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
   }
 
   &:hover {
     color: $white-color;
+    border: none;
   }
 
   &:hover:after {
@@ -69,7 +76,7 @@ export default {
 
   &:hover:after {
     opacity: 1;
-    height: 480% !important;
+    height: 335% !important;
   }
 }
 </style>

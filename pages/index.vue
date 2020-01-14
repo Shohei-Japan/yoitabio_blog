@@ -9,6 +9,7 @@
           :content="post.content"
           :created-at="getDate(post.createdAt)"
           :thumbnail-url="getUrl(post)"
+          @click="goToPost(post.id)"
         />
       </template>
     </div>
@@ -54,6 +55,9 @@ export default {
     },
     addtextZero(text) {
       return text.toString().padStart(2, '0')
+    },
+    goToPost(path) {
+      this.$router.push(`/${path}`)
     }
   }
 }

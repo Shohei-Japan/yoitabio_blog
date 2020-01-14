@@ -8,7 +8,7 @@
     />
     <nuxt
       class="root_nuxt"
-      :style="getClasses()"
+      :style="getStyles()"
     />
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
     })
   },
   methods: {
-    getClasses() {
+    getStyles() {
       const styles = {
         'padding-top': `${this.offsetHeight + this.rootNuxtPaddingTop}px`
       }

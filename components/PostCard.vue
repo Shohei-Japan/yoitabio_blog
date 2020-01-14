@@ -7,13 +7,11 @@
         class="post--card_thumbnail"
         :style="getStyles"
       >
-        <app-button class="post--card_link" text="READ POST"/>
-        <!-- <nuxt-link
+        <app-button
           class="post--card_link"
-          to="/me"
-        >
-          READ POST
-        </nuxt-link> -->
+          text="READ POST"
+          @click="handleClick"
+        />
       </div>
     </div>
   </article>
@@ -48,6 +46,11 @@ export default {
       return {
         backgroundImage: `url("${this.thumbnailUrl}")`
       }
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$emit('click')
     }
   }
 }
@@ -100,16 +103,17 @@ export default {
             0, 0, 1, 0,
             0, 0, 0, 0.9
           );
-          filter: grayscale(30%);
+          filter: grayscale(60);
 
           &:before {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.3);
             position: absolute;
             top: 0;
             right: 0;
             bottom: 0;
             left: 0;
             content: '';
+            transition: all 3s ease;
           }
 
           .post--card_link {
