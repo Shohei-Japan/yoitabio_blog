@@ -21,6 +21,7 @@
 import getPosts from '~/apollo/queries/posts.gql'
 import PostCard from '~/components/PostCard'
 import AsideMenu from '~/components/AsideMenu'
+import convertDateMixins from '~/mixins/convertDateMixins'
 
 export default {
   data: () => ({
@@ -31,6 +32,7 @@ export default {
     AsideMenu
   },
   layout: 'top',
+  mixins: [convertDateMixins],
   apollo: {
     posts: {
       prefetch: true,
@@ -43,18 +45,6 @@ export default {
         return post.thumbnail.url
       }
       return ''
-    },
-    getDate(postDate) {
-      const date = new Date(postDate)
-      const year = date.getFullYear()
-      const month = this.addtextZero(date.getMonth() + 1)
-      const day = this.addtextZero(date.getDate())
-      const hour = this.addtextZero(date.getHours())
-      const minute = this.addtextZero(date.getMinutes())
-      return `${year}/${month}/${day} ${hour}:${minute}`
-    },
-    addtextZero(text) {
-      return text.toString().padStart(2, '0')
     },
     goToPost(path) {
       this.$router.push(`/${path}`)

@@ -54,7 +54,8 @@ export default {
     }
   },
   markdownit: {
-    injected: true
+    injected: true,
+    breaks: true
   },
   styleResources: {
     scss: [
