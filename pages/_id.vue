@@ -3,7 +3,7 @@
     <h1>{{ post.title }}</h1>
     <p>{{ getDate(post.createdAt) }}</p>
 
-    <div
+    <p
       class="content"
       v-html="getContent(post.content)"
     />
@@ -14,6 +14,9 @@
 import gql from 'graphql-tag'
 import getPost from '~/apollo/queries/post.gql'
 import convertDateMixins from '~/mixins/convertDateMixins'
+import '~/vendors/google-code-prettify/prettify.js'
+
+const prettyPrint = require('code-prettify')
 
 export default {
   data: () => ({
@@ -32,11 +35,17 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      PR.prettyPrint()
+    })
+  },
   methods: {
     getContent(text) {
       if (!text) {
         return ''
       }
+      console.log(this.$md.render(text))
       return this.$md.render(text)
     }
   }
@@ -44,13 +53,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content /deep/ {
-  pre {
-    background-color: $bg-code-color;
-  }
-  pre > code {
-    font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    line-height: 1.4;
-  }
-}
+@import '@/vendors/google-code-prettify/prettify.css';
+@import '@/vendors/google-code-prettify/skins/sunburst.css';
+
+// .content /deep/ {
+//   pre {
+//     background-color: $bg-code-color;
+//   }
+//   pre > code {
+//     font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+//     line-height: 1.4;
+//   }
+// }
 </style>
